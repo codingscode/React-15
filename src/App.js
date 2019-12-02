@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
 import classes from './App.css'
-
-
 import Pessoas from './Pessoas/Pessoas'; 
+import Cockpit from './Cockpit/Cockpit';
 
 class App extends Component {
 
@@ -49,38 +48,24 @@ class App extends Component {
   render() {
     
     let pessoas = null;
-    let botaoClasse = '';
-
+    
     if (this.state.mostrarPessoas) {
-      pessoas = (
-        <div>
+      pessoas = 
+        
          <Pessoas 
          pessoas={this.state.pessoas}
          clicked={this.apagarManipuladorPessoa}
          changed={this.nomeManipuladorAlterado} />
-        </div>
-      );
-      
-      botaoClasse = classes.vermelho;
-    }
-
-    const classesAssinaladas = [];
-    if (this.state.pessoas.length <= 2) {
-      classesAssinaladas.push(classes.vermelho);  //classes = ['vermelho']
-    }
-    if (this.state.pessoas.length <= 1) {
-      classesAssinaladas.push(classes.negrito);  //classes = ['vermelho', 'negrito']
+       
     }
 
     return (
       
       <div className={classes.App}>
-        <h1>Olá, Sou um aplicativo React</h1>
-        <p className={classesAssinaladas.join( ' ' )}>Isto está funcionando</p>
-        <button 
-        className={botaoClasse}
-        onClick={this.toogleManipuladorPessoas}>Alternancia de Pessoas
-        </button> 
+        <Cockpit 
+        mostrarPessoas={this.state.mostrarPessoas} 
+        pessoas={this.state.pessoas} 
+        clicked={this.toogleManipuladorPessoas} />
         {pessoas}
       </div> 
     ); 
